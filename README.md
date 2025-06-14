@@ -11,12 +11,15 @@ This includes (but is not limited to):
 - Video generation with SORA
 - AI automation
 
-## Projects so far
-I am just getting started. I only just uploaded the notebook of this repo, `llms_and_pirates.ipynb`, where I used LLMs (via their APIs) to create chatbots that:
-- talk like a pirate!
-- make use of external tools
-- give out voiced replies (with OpenAI's text-to-speech API) in a pirate accent
-- generate images with DALL-E
+## Work done so far
+- [llms_and_pirates.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/llms_and_pirates.ipynb)
+  - used frontier LLMs via their APIs
+  - created chatbots that
+    - talk like a pirate!
+    - make use of external tools
+    - give out voiced replies (with OpenAI's text-to-speech API) in a pirate accent
+    - generate images with DALL-E
+- [text_classification_with_transformers.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/text_classification_with_transformers.ipynb)
+  - Text tokenization, embeddings, and classification with DistilBERT + fine-tuning on the [Emotions dataset](https://huggingface.co/datasets/emotion)
 
-In the near future, I will be adding more notebooks to this repo. Stay tuned!
-
+In the near future, I will keep on adding more notebooks to this repo. Stay tuned!
