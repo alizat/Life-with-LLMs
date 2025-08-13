@@ -7,9 +7,11 @@ This includes (but is not limited to):
 - LLM APIs: OpenAI Chat-GPT, Anthropic Claude, Google Gemini
 - Image generation with Dall-E
 - Text-to-speech with OpenAI TTS API
+- Retrieval-Augmented Generation (RAG)
 - Agentic systems and workflows with LangChain & LangGraph
 - Video generation with SORA
 - AI automation
+- Gradio apps
 
 ## Work done so far
 - [llms_and_pirates.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/llms_and_pirates.ipynb)
@@ -21,8 +23,10 @@ This includes (but is not limited to):
 - [text_classification_with_transformers.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/text_classification_with_transformers.ipynb)
   - Text tokenization, embeddings, and classification with DistilBERT + fine-tuning on the [Emotions dataset](https://huggingface.co/datasets/emotion)
 - [code_works.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/code_works.ipynb)
-  - built a couple of LLM apps that:
+  - A couple of LLM apps that:
     - Add comments and docstrings to a given piece of Python code
     - Write unit test cases for the functions in a given piece of Python code
+- [rag_experiment.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/rag_experiment.ipynb)
+  - An LLM app augmented with a RAG vector store that can be queried on info about a fake insurance company and its records.
 
 ***I will keep on adding more notebooks to this repo. Stay tuned!***
