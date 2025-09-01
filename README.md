@@ -28,5 +28,7 @@ This includes (but is not limited to):
     - Write unit test cases for the functions in a given piece of Python code
 - [rag_experiment.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/rag_experiment.ipynb)
   - An LLM app augmented with a RAG vector store that can be queried on info about a fake insurance company and its records.
+- [llm_regression.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/llm_regression/llm_regression.ipynb)
+  - LLMs are used in a regression task to estimate the prices of products based on their description.
 
 ***I will keep on adding more notebooks to this repo. Stay tuned!***
