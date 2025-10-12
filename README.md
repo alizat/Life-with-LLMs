@@ -14,21 +14,19 @@ This includes (but is not limited to):
 - Gradio apps
 
 ## Work done so far
-- [llms_and_pirates.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/llms_and_pirates.ipynb)
+- [llms_and_pirates.ipynb](llms_and_pirates.ipynb)
   - created chatbots (using frontier LLMs) that
     - talk like a pirate!
     - make use of external tools
     - give out voiced replies (with OpenAI's text-to-speech API) in a pirate accent
     - generate images with DALL-E
-- [text_classification_with_transformers.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/text_classification_with_transformers.ipynb)
-  - Text tokenization, embeddings, and classification with DistilBERT + fine-tuning on the [Emotions dataset](https://huggingface.co/datasets/emotion)
-- [code_works.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/code_works.ipynb)
+- [code_works.ipynb](code_works.ipynb)
   - A couple of LLM apps that:
     - Add comments and docstrings to a given piece of Python code
     - Write unit test cases for the functions in a given piece of Python code
-- [rag_experiment.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/rag_experiment.ipynb)
+- [rag_experiment.ipynb](rag_experiment.ipynb)
   - An LLM app augmented with a RAG vector store that can be queried on info about a fake insurance company and its records.
-- [llm_regression.ipynb](https://github.com/alizat/Life-with-LLMs/blob/main/llm_regression/llm_regression.ipynb)
+- [llm_regression.ipynb](llm_regression.ipynb)
   - LLMs are used in a regression task to estimate the prices of products based on their description.
 
 ***I will keep on adding more notebooks to this repo. Stay tuned!***
