@@ -24,7 +24,7 @@ This includes (but is not limited to):
   - A couple of LLM apps that:
     - Add comments and docstrings to a given piece of Python code
     - Write unit test cases for the functions in a given piece of Python code
-- [rag_experiment.ipynb](rag_experiment.ipynb)
+- [rag_experiment.ipynb](rag_experiment/rag_experiment.ipynb)
   - An LLM app augmented with a RAG vector store that can be queried on info about a fake insurance company and its records.
 - [llm_regression.ipynb](llm_regression/llm_regression.ipynb)
   - LLMs are used in a regression task to estimate the prices of products based on their description.
