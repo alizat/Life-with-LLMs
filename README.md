@@ -24,9 +24,13 @@ This includes (but is not limited to):
   - A couple of LLM apps that:
     - Add comments and docstrings to a given piece of Python code
     - Write unit test cases for the functions in a given piece of Python code
-- [Rag Experiment](rag_experiment/rag_experiment.ipynb)
+- [RAG Experiment](rag_experiment/rag_experiment.ipynb)
   - An LLM app augmented with a RAG vector store that can be queried on info about a fake insurance company and its records.
 - [LLM Regression](llm_regression/llm_regression.ipynb)
-  - LLMs are used in a regression task to estimate the prices of products based on their description.
+  - LLMs are used in a regression task to estimate the prices of products based on their descriptions.
+
+## Work in progress
+- [Multimodal RAG with Flowers](multimodal_rag_with_flowers/)
+  - A multimodal RAG store containing images for flowers to be used by an LLM-powered chatbot to assist with flower arrangements.
 
 ***I will keep on adding more notebooks to this repo. Stay tuned!***
