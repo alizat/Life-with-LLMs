@@ -14,23 +14,14 @@ This includes (but is not limited to):
 - Gradio apps
 
 ## Work done so far
-- [LLMs and Pirates](llms_and_pirates.ipynb)
-  - created chatbots (using frontier LLMs) that
-    - talk like a pirate!
-    - make use of external tools
-    - give out voiced replies (with OpenAI's text-to-speech API) in a pirate accent
-    - generate images with DALL-E
-- [Code Works](code_works.ipynb)
-  - A couple of LLM apps that:
-    - Add comments and docstrings to a given piece of Python code
-    - Write unit test cases for the functions in a given piece of Python code
-- [RAG Experiment](rag_experiment/rag_experiment.ipynb)
-  - An LLM app augmented with a RAG vector store that can be queried on info about a fake insurance company and its records.
-- [LLM Regression](llm_regression/llm_regression.ipynb)
-  - LLMs are used in a regression task to estimate the prices of products based on their descriptions.
+- [LLMs and Pirates](pirates_and_llms/): pirate-themed projects featuring LLM-powered chatbots. Here, you'll see *TTS (text-to-speech)*, *image generation* (DALL-E) and use of *tools*.
+- [Code Works](code_works/): LLM-based apps that facilitate a couple of common coding activities.
+- [InsureLLM](insurellm/): *RAG*-powered LLM app that can be queried on info about a fake insurance company and its records.
+- [Amazon Product Pricer](product_pricer/): LLMs are used in a *regression* task to estimate the prices of products based on their descriptions.
 
 ## Work in progress
-- [Multimodal RAG with Flowers](multimodal_rag_with_flowers/)
-  - A multimodal RAG store containing images for flowers to be used by an LLM-powered chatbot to assist with flower arrangements.
+- [Multimodal Florist](multimodal_florist/): LLM-powered chatbot to assist with flower arrangements. Chatbot utilizes a *multimodal RAG* store containing images for flowers.
 
-***I will keep on adding more notebooks to this repo. Stay tuned!***
+## Future work planned
+- An agentic AI system that involves grabbing info from online or local files/db as appropriate.
+- AI automation via n8n.

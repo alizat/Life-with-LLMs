@@ -21,3 +21,21 @@ def save_images(dataset, dataset_folder, num_images):
         image = dataset["train"][i]["image"]
         image.save(os.path.join(dataset_folder, f"flower_{i+1}.png"))
     print(f"Saved the first {num_images} images to {dataset_folder}")
+
+
+# === Functions for Querying the VectorDB ===
+def query_db(chroma_collection, query, results=5):
+    print(f"Querying the database for: {query}")
+    results = chroma_collection.query(
+        query_texts=[query], n_results=results, include=["uris", "distances"]
+    )
+    return results
+
+def print_results(results):
+    for idx, uri in enumerate(results["uris"][0]):
+        print(f"ID: {results['ids'][0][idx]}")
+        print(f"Distance: {results['distances'][0][idx]}")
+        print(f"Path: {uri}")
+        # Display the image using matplotlib
+        show_image_from_uri(uri)
+        print("\n")
