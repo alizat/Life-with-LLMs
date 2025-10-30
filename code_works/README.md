@@ -8,6 +8,6 @@ This project currently contains a single [notebook](code_works.ipynb) which cons
   - OpenAI ChatGPT-4o
   - Anhropic Clause 3.5 Sonnet
   - Google Gemini 2.0 Flash
-- Chatbots (Gradio) that do the following:
+- Chatbots (with Gradio UI) that do the following:
   - Add comments and docstrings to a given piece of Python code
   - Write unit test cases for the functions in a given piece of Python code

@@ -1,34 +1,48 @@
 from utils import *
-import base64
+
+import chromadb
+from chromadb.utils.embedding_functions import OpenCLIPEmbeddingFunction
+from chromadb.utils.data_loaders import ImageLoader
 
 # pip install langchain-community langchain-core langchain-openai
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 
+from dotenv import load_dotenv
+load_dotenv(override=True)
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 
-# === For Testing ONlY === uncomment to test
-query = "purple petals"  # Change the query to test different images or different
-results = query_db(query)
-print_results(results)
+# setup the chromaDB
+chroma_client = chromadb.PersistentClient(path="./data/flower.db")  # create a chromadb object
+image_loader = ImageLoader()                                        # instantiate image loader
+embedding_function = OpenCLIPEmbeddingFunction()                    # instantiate multimodal embedding function
 
-# =================================
-# === Setting up the RAG Flow ===
+# create the collection (vector database)
+flower_collection = chroma_client.get_or_create_collection(
+    "flowers_collection",
+    embedding_function=embedding_function,
+    data_loader=image_loader,
+)
 
-# 1. the user submits a query (question, query, etc)
-# 2. the query is sent to the multimodal database (retrieval function first)
-## * in our case, we try to pull the images that match the user's query
-# 3. Those images are then passed (along with prompt) to the a vision model where it will use the images context and respond to the prompt as a final output
+# # preliminary test to make sure it works
+# print('\n---------------------\n')
+# print('Preliminary Test...\n')
+# query = "purple petals"  # Change the query to test different images or different
+# results = query_db(flower_collection, query)
+# print_results(results)
+# print('\n---------------------\n')
 
+# RAG Flow
+# 1. the user submits a query
+# 2. the query is sent to the multimodal database to retrieve images that match the user's query
+# 3. Those images are then passed (along with prompt) to the a vision model where it will use the images context and respond to the prompt as a final output.
 
 # Instantiate the OpenAI model
-vision_model = ChatOpenAI(
-    model="gpt-4o", temperature=0.0
-)  # this model has vision capabilities
+vision_model = ChatOpenAI(model="gpt-4o", temperature=0.0, api_key=OPENAI_API_KEY)  # this model has vision capabilities
 
 # instantiate the output parser
 parser = StrOutputParser()
-
 
 # Define the prompt template
 image_prompt = ChatPromptTemplate.from_messages(
@@ -61,62 +75,15 @@ image_prompt = ChatPromptTemplate.from_messages(
 # Define the LangChain Chain
 vision_chain = image_prompt | vision_model | parser
 
-
-# === Foramtting query results for LLM prompting ===
-# to input the images in as context, we need to first encode the images as base64 strings for the LLM to understand
-
-
-# The function below that will do that, and create a dictionary along with
-# the original user query to pass into the chain. The chain will take a dictionary input,
-# that will correspond to the three pieces of information
-# that need to be injected into it {user_query}, {image_data_1}, {image_data_2}.
-def format_prompt_inputs(data, user_query):
-    print("Formatting prompt inputs...")
-    inputs = {}
-
-    # Add user query to the dictionary
-    inputs["user_query"] = user_query
-
-    # Get the first two image paths from the 'uris' list
-    # print('len(data):', len(data))
-    # print('len(data["uris"]):', len(data["uris"]))
-    # print('len(data["uris"][0]):', len(data["uris"][0]))
-    # print(data)
-    # print('===============================')
-    # print('data["uris"][0]:', data["uris"][0])
-    image_path_1 = data["uris"][0][0]
-    image_path_2 = data["uris"][0][1]
-
-    # Encode the first image
-    with open(image_path_1, "rb") as image_file:
-        image_data_1 = image_file.read()
-    inputs["image_data_1"] = base64.b64encode(image_data_1).decode("utf-8")
-
-    # Encode the second image
-    with open(image_path_2, "rb") as image_file:
-        image_data_2 = image_file.read()
-    inputs["image_data_2"] = base64.b64encode(image_data_2).decode("utf-8")
-
-    # inputs dictionary will have the user query and the base64 encoded images and will look like this:
-    # {
-    #     "user_query": "pink flower with yellow center",
-    #     "image_data_1": "base64_encoded_image_1",
-    #     "image_data_2": "base64_encoded_image_2"
-    # }
-    print("Prompt inputs formatted....")
-    return inputs
-
-
-## === Putting it all together ===
+# The Actual Test
 print("Welcome to the flower arrangement service!")
 print("Please enter your query to get some ideas for a bouquet arrangement.")
-
-query = input("Enter your query: \n")
+query = input("Enter your query: \n")  # yellow flowers
 
 # Running Retrieval and Generation
-results = query_db(query, results=2)
-prompt_input = format_prompt_inputs(results, query)
-response = vision_chain.invoke(prompt_input)
+results      = query_db(flower_collection, query, results=2)  # get two most relevant images to the query
+prompt_input = format_prompt_inputs(results, query)  # format the prompt input for the LLM (query + 2 relevant images from RAG store)
+response     = vision_chain.invoke(prompt_input)  # get LLM response
 
 print("\n ------- \n")
 
